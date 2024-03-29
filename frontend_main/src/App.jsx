@@ -10,10 +10,10 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/create' element={<Create/>}></Route>
-                <Route path='/login' element={<Login/>}></Route>
+                <Route path='/auth/create' element={<Create/>}></Route>
+                <Route path='/auth/login' element={<Login/>}></Route>
                 <Route path='/profile' index element={<Profile/>}></Route>
-                <Route path='/reset-password' index element={<ResetPassword/>}></Route>
+                <Route path='/auth/reset-password' index element={<ResetPassword/>}></Route>
                 <Route path='/*' element={<Profile />} />
             </Routes>
         </BrowserRouter>

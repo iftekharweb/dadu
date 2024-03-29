@@ -14,25 +14,12 @@ load_dotenv()
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(
-        max_length=255,
-        style = {'input_type':'password'},
-        write_only=True
-    )
-
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'password', 'password2']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
-    
-    def validate(self, data):
-        password = data.get('password')
-        password2 = data.get('password2')
-        if password == password2:
-            return data
-        raise serializers.ValidationError("Password and Confirm Password Did Not Match!")
     
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -97,7 +84,7 @@ class SendPasswordResetEmailSerializer(serializers.ModelSerializer):
             user = User.objects.get(email=email)
             uid = urlsafe_base64_encode(force_bytes(user.id))
             token = PasswordResetTokenGenerator().make_token(user)
-            link = os.environ.get('BASE_URL')+'/api/send-reset-password-email/'+uid+'/'+token
+            link = ''+'/api/send-reset-password-email/'+uid+'/'+token
             print(link)
             # S E N D   E M A I L 
             body = 'Hello, '+user.first_name+' '+user.last_name+' 😁\n\n'+'Click the following link to reset your password: \n'+link+'\n\nToken Endpoint: \n/'+uid+'/'+token+'/\n\nNote: This link will be valid for 15 mins till the email has been sent!'
@@ -118,24 +105,15 @@ class UserPasswordResetSerializer(serializers.ModelSerializer):
         style={'input_type':'password'},
         write_only=True
     )
-    password2 = serializers.CharField(
-        max_length=255,
-        style={'input_type':'password'},
-        write_only=True
-    )
     class Meta:
         model = User
-        fields = ['password', 'password2']
+        fields = ['password']
 
     def validate(self, data):
         try:
             password = data.get('password')
-            password2 = data.get('password2')
             uid = self.context.get('uid')
             token = self.context.get('token')
-            if password != password2:
-                raise serializers.ValidationError("Password and Confirm Password Did Not Match!")
-
             id = smart_str(urlsafe_base64_decode(uid))
             user = User.objects.get(id=id)
             if not PasswordResetTokenGenerator().check_token(user, token):

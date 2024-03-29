@@ -4,10 +4,8 @@ import "./style.css";
 import Navbar from "./Navbar";
 import axios from "axios";
 
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Create = () => {
   const navigate = useNavigate();
@@ -18,9 +16,10 @@ const Create = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
-  const notMatched = () => toast.error("Password and Confirm Password did not match!");
+  const notMatched = () =>
+    toast.error("Password and Confirm Password did not match!");
   const alreadyExist = () => toast.error("Email or Username already exist");
-  const notify_successfull_login = () => toast.success("Log in successfull!")
+  const notify_successfull_login = () => toast.success("Log in successfull!");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,16 +28,19 @@ const Create = () => {
       return;
     }
     try {
-      const response = await fetch(
-        `http://127.0.0.1:8000/api/user/register/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, email, first_name, last_name, password, password2 }),
-        }
-      );
+      const response = await fetch(`http://127.0.0.1:8000/auth/create/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          first_name,
+          last_name,
+          password,
+        }),
+      });
       const data = await response.json();
       console.log(data);
       if (!data.errors) {
@@ -122,7 +124,7 @@ const Create = () => {
             <p>
               Have An Account?{" "}
               <button
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/auth/login")}
                 className="font-semibold text-green-500 focus:outline-none hover:text-green-700 transition duration-300"
               >
                 Log In
@@ -131,7 +133,7 @@ const Create = () => {
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfileNavbar = ({username, onClick}) => {
+const ProfileNavbar = ({ username, onClick }) => {
   return (
     <div className="flex justify-between items-center w-full h-16 bg-green-800 px-4 shadow-lg">
       <div>

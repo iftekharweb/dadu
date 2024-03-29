@@ -75,7 +75,7 @@ const Login = () => {
           <div className="mt-2 text-center">
             <p>
               <button
-                onClick={() => navigate("/reset-password")}
+                onClick={() => navigate("/auth/reset-password")}
                 className="font-semibold text-red-500 focus:outline-none hover:text-red-700 transition duration-300"
               >
                 Forgot Password
@@ -86,7 +86,7 @@ const Login = () => {
             <p>
               Need an account?{" "}
               <button
-                onClick={() => navigate("/create")}
+                onClick={() => navigate("/auth/create")}
                 className="font-semibold text-green-500 focus:outline-none hover:text-green-700 transition duration-300"
               >
                 Create
