@@ -1,11 +1,17 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from ecosync.models import CustomUser
 
 class ProfileSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'role']
-        read_only_fields = ['role']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'role_name', 'created_at']
+        read_only_fields = ['role', 'username']
+    role_name = SerializerMethodField()
+
+
+    def get_role_name(self, instance):
+        role = instance.role
+        return role.Name
         
     # def get_fields(self, *args, **kwargs):
     #     fields = super().get_fields(*args, **kwargs)
