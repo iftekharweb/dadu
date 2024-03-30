@@ -12,7 +12,7 @@ const ProfileNavbar = ({ username, onClick }) => {
         </p>
         <button
           onClick={onClick}
-          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
+          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-5 rounded-lg"
         >
           Log Out
         </button>

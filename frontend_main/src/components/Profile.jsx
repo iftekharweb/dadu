@@ -9,6 +9,7 @@ import ChangePassword from "./ChangePassword";
 import ChangeProfile from "./ChangeProfile";
 
 const Description = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
       <p className="text-center text-black">Welcome to</p>
@@ -16,6 +17,12 @@ const Description = () => {
         Waste Wanagement Ecosystem
       </p>
       <p className="text-center font-bold text-green-800 text-lg">EcoSync</p>
+      <button
+        className="bg-green-500 m-3 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
+        onClick={() => navigate('/dashboard')}
+      >
+        Dashboard
+      </button>
     </div>
   );
 };
@@ -150,13 +157,13 @@ const Profile = () => {
               {created_at.minutes} minutes ago
             </p>
             <button
-              className="bg-green-500 mr-2 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
+              className="bg-green-500 m-2 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
               onClick={() => setIsChanging(() => !isChanging)}
             >
               Change Password
             </button>
             <button
-              className="bg-green-500 ml-2 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
+              className="bg-green-500 m-2 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
               onClick={() => setIsProfile(() => !isProfile)}
             >
               Change Profile
