@@ -127,7 +127,7 @@ const Home = () => {
       case 'Dashboard':
         return <DashboardMain />;
       case 'UserList':
-        return <UserList users={_users} />;
+        return <UserList users={_users} profileId={uid} />;
       default:
         return <DashboardMain />;
     }
