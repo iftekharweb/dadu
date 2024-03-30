@@ -3,8 +3,40 @@ import NavbarDashboard from './NavbarDashboard';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from './Sidebar';
+import UserList from './UserList';
 
 const Home = () => {
+  //
+  const _users = [
+    {
+        "id": 2,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@gmail.com",
+        "role": 1,
+        "role_name": "System Admin"
+    },
+    {
+        "id": 3,
+        "username": "shadik",
+        "first_name": "SHADIK",
+        "last_name": "HASAN",
+        "email": "shadik.sk420@gmail.com",
+        "role": 2,
+        "role_name": "LandFiled Manager"
+    },
+    {
+      "id": 4,
+      "username": "shadik",
+      "first_name": "SHADIK",
+      "last_name": "HASAN",
+      "email": "shadik.sk420@gmail.com",
+      "role": 2,
+      "role_name": "LandFiled Manager"
+  }
+  ]
+  //
   function calculateTimeDifference(created_at) {
     const createdAtDate = new Date(created_at);
     const currentDate = new Date();
@@ -77,6 +109,8 @@ const Home = () => {
     } else {
       navigate("/auth/login");
     }
+    // Fecth from /users/
+
   }, []);
 
   const handleClick = () => {
@@ -89,8 +123,9 @@ const Home = () => {
       <div>
         <NavbarDashboard username={username} onClick={handleClick}/>
       </div>
-      <div className='h-full'>
+      <div className='h-full flex flex-row'>
         <Sidebar/>
+        <UserList users={_users}/>
       </div>
     </div >
   )

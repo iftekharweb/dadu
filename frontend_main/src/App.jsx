@@ -17,7 +17,6 @@ function App() {
                 <Route path='/profile' index element={<Profile/>}></Route>
                 <Route path='/auth/reset-password' index element={<ResetPassword/>}></Route>
                 <Route path='/dashboard' index element={<Home/>}></Route>
-                <Route path='/dashboard' index element={<FramePage/>}></Route>
                 <Route path='/*' element={<Profile />} />
             </Routes>
         </BrowserRouter>

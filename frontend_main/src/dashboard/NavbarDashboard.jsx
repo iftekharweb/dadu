@@ -1,11 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const NavbarDashboard = ({username, onClick}) => {
+const NavbarDashboard = ({username, onCCClick}) => {
+  const navigate = useNavigate();
     return (
         <div className="flex justify-between items-center w-full h-16 bg-green-800 px-4 shadow-lg">
           <div>
           <button
-              onClick={onClick}
+              onClick={() => navigate('/profile')}
               className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg"
             >
               Profile
@@ -16,7 +18,7 @@ const NavbarDashboard = ({username, onClick}) => {
               {username}
             </p>
             <button
-              onClick={onClick}
+              onClick={onCCClick}
               className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-5 rounded-lg"
             >
               Log Out
