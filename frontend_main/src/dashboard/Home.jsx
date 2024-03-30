@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import UserList from './UserList';
+import DashboardMain from './DashboardMain';
 
 const Home = () => {
+  const [which, setWhich] = useState(2)
+
   //
   const _users = [
     {
@@ -118,14 +121,26 @@ const Home = () => {
     navigate("/auth/login");
   };
 
+  const [selectedOption, setSelectedOption] = useState('');
+  const renderComponent = () => {
+    switch (selectedOption) {
+      case 'Dashboard':
+        return <DashboardMain />;
+      case 'UserList':
+        return <UserList users={_users} />;
+      default:
+        return <DashboardMain />;
+    }
+  };
+
   return (
     <div className='h-screen w-screen'>
       <div>
-        <NavbarDashboard username={username} onClick={handleClick}/>
+        <NavbarDashboard username={username} onCCClick={handleClick}/>
       </div>
       <div className='h-full flex flex-row'>
-        <Sidebar/>
-        <UserList users={_users}/>
+        <Sidebar onSelectOption={setSelectedOption}/>
+        {renderComponent()}
       </div>
     </div >
   )

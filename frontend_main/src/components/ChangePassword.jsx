@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ChangePassword = ({ changeState }) => {
   const navigate = useNavigate();
-  const h = useHistory();
 
   const notMatched = () =>
     toast.error("Password and Confirm Password did not match!");
